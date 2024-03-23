@@ -1,0 +1,47 @@
+.desc{
+    color: blue;
+    padding-top: 20px;
+}
+
+.navbar{
+    background-color: black;
+    font-size: large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: auto;
+    height: 70px;
+}
+
+.navbar a{
+    padding-left: 10px;
+    color: #7aa7e6;
+    display: inline;
+   padding-right: 15px;
+}
+
+.navbar-brand{
+    font-size: 1em;
+}
+
+.navbar-item {
+    margin-left: auto;
+    
+}
+
+.body-content{
+    padding-top: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+
+.table{
+    display:table-header-group;
+}
+
+.directors{
+    text-indent: 30px;
+}
+
+
