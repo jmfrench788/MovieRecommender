@@ -18,10 +18,14 @@ from pyspark.sql.functions import *
 from pyspark.sql import Row
 import os
 from json import loads, dumps
+from localStoragePy import localStoragePy
+
 
 
 os.environ["JAVA_HOME"] = "/Users/juliafrench/Downloads/jdk-21.0.2.jdk/Contents/Home/"
 os.environ["SPARK_HOME"] = "/Users/juliafrench/Documents/apache-spark/3.5.0/libexec"
+
+localStorage = localStoragePy('movie_app', 'text')
 
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
@@ -34,6 +38,22 @@ def movieTable():
     df = sparkDF.toPandas()
     
     return df
+
+def selToList(li):
+    newSt = li.replace("\"", "")
+    newSt = newSt.replace("[", "")
+    newSt = newSt.replace("]", "")
+    splitSt = newSt.split(",")
+    for x in splitSt:
+       print(x)
+    
+    sparkDF = spark.read.csv('/Users/juliafrench/Documents/MovieRecc/IMDb_Clean_CSV.csv', header=True, inferSchema=True)
+    df = sparkDF.toPandas()
+    ids = [int(i) for i in splitSt]
+    rows = df[df['movieID'].isin(ids)]
+    return rows
+  
+
 
 
 

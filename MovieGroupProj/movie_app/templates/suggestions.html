@@ -3,32 +3,9 @@
 {% extends "layout.html" %}
 {% block content %}
 <!DOCTYPE html> 
+<div data-role="page" data-url="{{ url_for('suggestions') }}"></div>
 <html> 
     <body> 
-    <input type="button" value="Get Selected" onclick = "getCX()" />
-    
-
-    <script type="text/javascript">
-      function getCX() {
-
-          var grid = document.getElementById("movies");
-   
-          var checkBoxes = grid.getElementsByTagName("INPUT");
-          var selectedM = []
-   
-          for (var i = 0; i < checkBoxes.length; i++) {
-              if (checkBoxes[i].checked) {
-                var currentRow = checkBoxes[i].parentNode.parentNode;
-                var movID = currentRow.getElementsByTagName("td")[4];
-                console.log(movID.innerText)
-                selectedM.push(movID.innerText)
-              }
-            }
-        const moviesJSON = JSON.stringify(selectedM);
-        return moviesJSON
-      }
-  </script>
-    
         <table id="movies" class="table" style="width:100%">
             <thead>
               <tr>
@@ -54,11 +31,4 @@
     </body> 
 </html>
 {% endblock %}
-
-
-
-
-
-
-  
 

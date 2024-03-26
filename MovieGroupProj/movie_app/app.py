@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect
+from flask import Flask, request, render_template, session, redirect, url_for
 from flask import render_template
 import numpy as np
 import pandas as pd
@@ -24,7 +24,6 @@ import os
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
 import sys
-from flask_sqlalchemy import SQLAlchemy
 from jinja2 import Template
 
 
@@ -40,6 +39,7 @@ sc = spark.sparkContext
 sc
 
 app = Flask(__name__)
+app.secret_key = "secretkey"
 
 @app.route("/")
 def home():
@@ -52,10 +52,26 @@ def recc():
     print(li)
     return render_template("recc.html", data=li)
     
+@app.route('/process', methods=['GET','POST']) 
+def process(): 
 
-@app.route("/Suggestions")
-def get_data():
-    return app.send_static_file("data.json")
+    if request.method == "POST":
+        data = request.form.get('data') 
+        reccomendations = f.selToList(data)
+        print(reccomendations)
+        selLI = reccomendations.values.tolist()
+        session["selList"] = selLI
+        return redirect(url_for('suggestions'))
+    return render_template('recc.html')
+
+
+@app.route('/suggestions')
+def suggestions():
+    selR = session['selList']  
+    # Function to get suggested movies base on selR list     
+    return render_template("suggestions.html", data=selR)
+    
+    
 
 
 

@@ -1,4 +1,5 @@
-function GetChecked() {
-    var grid = document.getElementById("movies");
-    console.log("hello");
+function getSaved(){
+        moviesFile = localStorage.getItem('selMovies') || '';
+        const obj = JSON.parse(moviesFile);
+        console.log(obj)
 }
