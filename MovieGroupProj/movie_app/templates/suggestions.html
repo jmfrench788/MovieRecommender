@@ -9,21 +9,19 @@
         <table id="movies" class="table" style="width:100%">
             <thead>
               <tr>
-                  <th>Select</th>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Directors</th>
-                  <th>Movie ID</th>
+                  <th>Genre</th>
               </tr>
             </thead>
             <tbody>
                 {% for item in data %}
               <tr>
-                <td><input type="checkbox" name="select" class="checkMe"></td>
                     <td>{{item[1]}}</td>
                     <td>{{item[2]}}</td>
                     <td class="directors">{{item[3]}}</td>
-                    <td>{{item[0]}}</td>
+                    <td>{{item[9]}}</td>
               </tr>
               {% endfor %}
             </tbody>
