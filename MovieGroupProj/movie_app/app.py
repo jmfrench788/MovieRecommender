@@ -9,9 +9,7 @@ import sys
 from functions import f
 
 
-
 sys.path.append("/Users/juliafrench/Documents/MovieRecc/MovieGroupProj/movie_app/functions")
-
 
 os.environ["JAVA_HOME"] = "/Users/juliafrench/Downloads/jdk-21.0.2.jdk/Contents/Home/"
 os.environ["SPARK_HOME"] = "/Users/juliafrench/Documents/apache-spark/3.5.0/libexec"
