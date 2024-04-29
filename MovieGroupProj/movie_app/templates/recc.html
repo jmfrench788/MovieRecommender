@@ -5,6 +5,7 @@
 <!DOCTYPE html> 
 <div data-role="page" id="welcome" data-url="{{ url_for('recc') }}"></div>
 <html> 
+  <div class="directions"><span>Select your favorite movies. Between 1-5 is recommended. Then click the button.</span></div>
     <body> 
     <input type="button" value="Get Selected" onclick = "getCX()" />
     
@@ -47,10 +48,12 @@
     } 
 </script> 
 
+
+
     
         <table id="movies" class="table" style="width:100%">
             <thead>
-              <tr>
+              <tr class="tablehead">
                   <th>Select</th>
                   <th>Title</th>
                   <th>Year</th>

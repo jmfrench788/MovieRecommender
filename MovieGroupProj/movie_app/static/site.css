@@ -1,22 +1,26 @@
-.desc{
-    color: blue;
-    padding-top: 20px;
+.appDesc{
+    color: rgb(80, 179, 203);
+    text-align: center;
+    font-size: 60px;
+    background-color: black;
+    text-decoration: underline;
+    padding-bottom: 20px;
 }
 
 .navbar{
-    background-color: black;
+    background-color: rgb(80, 179, 203);
     font-size: large;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: auto;
+    padding: none;
     height: 70px;
 }
 
 .navbar a{
     padding-left: 10px;
-    color: #7aa7e6;
+    color: black;
     display: inline;
    padding-right: 15px;
 }
@@ -41,7 +45,51 @@
 }
 
 .directors{
-    text-indent: 30px;
+    text-align: center;
 }
+
+.problems{
+    color: white;
+    padding-top: 30px;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgb(15, 15, 68);
+    text-decoration: underline;
+    padding-bottom: 30px;
+}
+
+div.container{
+    text-align: center;
+    background-color: rgb(146, 169, 236);
+}
+
+.l1{
+    display: inline-block;
+    text-align: center;
+    color: black;
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.tablehead{
+    background-color: rgb(15, 15, 68);
+    color: white;
+}
+
+.directions{
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-size: 20px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(80, 179, 203);
+    color: white;
+    text-align: center;
+  }
 
 

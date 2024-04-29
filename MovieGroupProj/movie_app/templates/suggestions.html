@@ -8,11 +8,12 @@
     <body> 
         <table id="movies" class="table" style="width:100%">
             <thead>
-              <tr>
+              <tr class="tablehead">
                   <th>Title</th>
                   <th>Year</th>
                   <th>Directors</th>
                   <th>Genre</th>
+                  <th>Streaming</th>
               </tr>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
                     <td>{{item[2]}}</td>
                     <td class="directors">{{item[3]}}</td>
                     <td>{{item[9]}}</td>
+                    <td>{{item[10]}}</td>
               </tr>
               {% endfor %}
             </tbody>

@@ -9,6 +9,7 @@ import sys
 from functions import f
 
 
+
 sys.path.append("/Users/juliafrench/Documents/MovieRecc/MovieGroupProj/movie_app/functions")
 
 os.environ["JAVA_HOME"] = "/Users/juliafrench/Downloads/jdk-21.0.2.jdk/Contents/Home/"
@@ -40,8 +41,8 @@ def process():
         data = request.form.get('data') 
         # use ids to get recommended movies: f.py
         reccomendations = f.selToList(data)
-        moviesLi = reccomendations.values.tolist()
-        session["recMovies"] = moviesLi
+        recs = reccomendations.values.tolist()
+        session["recMovies"] = recs
         return redirect(url_for('suggestions'))
     return render_template('recc.html')
 

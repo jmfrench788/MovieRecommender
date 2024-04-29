@@ -43,8 +43,61 @@ def transformClean():
 
     return cosine_sim
 
+def getReccomendations(ids, numRec):
+    ids = ids
+    cosine_sim = transformClean()
+    num_recommendations = numRec
+
+    df = movieTable()
+    movieDF = df
+    movieDF['combined_features'] =  movieDF['Genre'] + ' ' + movieDF['Sub_Genre'] + ' ' + movieDF['Director'] + ' ' + movieDF['Year'].astype(str)
+
+    recommendations = []
+    recs = []
+    for movie_id in ids:
+        print(movie_id)
+        # Get the index of the movie that matches the ID
+        idx = movieDF.index[movieDF['movieID'] == movie_id]
+        if len(idx) > 0:
+            idx = idx[0]
+            # Get the pairwise similarity scores
+            sim_scores = list(enumerate(cosine_sim[idx]))
+
+            # Sort the movies based on similarity scores
+            sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+
+            # Get the scores of the most similar movies
+            sim_scores = sim_scores[1:num_recommendations+1]
+
+            # Get the movie indices
+            movie_indices = [i[0] for i in sim_scores]
+
+            # Add recommendations for this movie to the list
+            recommendations.append(movieDF['movieID'].iloc[movie_indices].tolist())
+        else:
+            recommendations.append([])  
+          
+            # Movie not found in the dataset
+
+        recs = recommendations
+
+        flat_list = []
+        for row in recs:
+            flat_list.extend(row)
+    
+        res = []
+        [res.append(x) for x in flat_list if x not in res]
+
+        rows = df[df['movieID'].isin(res)]
+
+    return rows
+
+
+
+
 
 def selToList(li):
+    li = li
     # make list of selected ids
     newSt = li.replace("\"", "")
     newSt = newSt.replace("[", "")
@@ -52,56 +105,26 @@ def selToList(li):
     splitSt = newSt.split(",")
 
     ids = [int(i) for i in splitSt]
+
+
+    lenID = len(ids)
+    if lenID == 1:
+        numRec = 10
+    elif lenID == 2:
+        numRec = 5
+    elif lenID == 3:
+        numRec = 4
+    elif lenID == 4:
+        numRec = 3
+    elif lenID == 5:
+        numRec = 2
+    elif lenID == 6:
+        numRec = 2
+    else:
+        numRec = 1
     
-    df = movieTable()
-    # get first id 
-    firstID = ids[0]
-    # Get rows that match based on id
-        # rows = df[df['movieID'].isin(ids)]
+    recommendations = getReccomendations(ids, numRec)
+    return recommendations
 
-    movieDF = df
-
-    movieDF['combined_features'] =  movieDF['Genre'] + ' ' + movieDF['Sub_Genre'] + ' ' + movieDF['Director'] + ' ' + movieDF['Year'].astype(str)
-
-    cosine_sim = transformClean()
-    # Get the index of the movie that matches the title
-    idx = movieDF[movieDF['movieID'] == firstID].index[0] 
-    print(idx)
-
-    cosine_sim = transformClean()
-
-    # Get the pairwise similarity scores
-    sim_scores = list(enumerate(cosine_sim[idx]))
-
-    # Sort the movies based on similarity scores
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-
-    # Get the scores of the most similar movies
-    num_recommendations=10
-    sim_scores = sim_scores[1:num_recommendations+1]
-
-    # Get the movie indices
-    movie_indices = [i[0] for i in sim_scores]
-
-    
-    reccs = movieDF['movieID'].iloc[movie_indices].tolist()
-
-    # get rows which match the ids of recommended movies
-    movies = df[df['movieID'].isin(reccs)]
-    # Return the top 10 most similar movies
-    return movies
-
-
-
-  
-
-
-
-
-
-
-
-    
-    
 
 
